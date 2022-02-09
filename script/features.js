@@ -1,5 +1,5 @@
 const sendToBackend = async (request) => {
-  fetch('localhost:3000/', {
+  fetch('https://gvazgvbsrhzxpcadfzcb.supabase.co/rest/v1/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -43,7 +43,8 @@ if(!this.document) {
         timestamp: timestamp,
         unixTimestamp: unixTimestamp,
         method: method,
-        url: url
+        url: url,
+        trackerId: trackerId
       }
       
       console.log(request)
