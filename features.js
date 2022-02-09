@@ -18,7 +18,7 @@ if(!this.document) {
     method = event.request.method
 
     if (url.includes("heroku")){
-      console.log(timestamp, unixTimestamp, url)
+      console.log(timestamp, unixTimestamp, method, url)
     }
   
     //TODO: Add more information (e.g. headers if possible)
