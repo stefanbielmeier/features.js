@@ -1,11 +1,6 @@
-//Installation:
-//1) Add file to public folder of your react app. 
-//2) Add <script src="%PUBLIC_URL%/features.js"></script> in the <head></head> tags of your index.html file
-//3) Done!
-
 if(!this.document) {
   self.addEventListener("install", (event) => {
-    event.waitUntil(self.skipWaiting());
+  event.waitUntil(self.skipWaiting());
     console.log("install " + event);
   });
   
@@ -15,17 +10,22 @@ if(!this.document) {
   });
   
   self.addEventListener("fetch", function (event) {
-    console.log(event.request)
     
+    //1) Get each outgoing HTTP Request to Backend (incl. URL) and point in time
+    timestamp = new Date()
+    url = event.request.url
+    unixTimestamp = timestamp.getTime()
+    method = event.request.method
 
+    if (url.includes("heroku")){
+      console.log(timestamp, unixTimestamp, url)
+    }
+  
+    //TODO: Add more information (e.g. headers if possible)
     //https://stackoverflow.com/questions/57583086/service-worker-not-getting-body-from-request
 
-    
 
-
-
-
-
+    //2) Get each HTTP Request (incl. URL) and point in time
 
   });
   
