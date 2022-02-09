@@ -11,15 +11,3 @@ if ('serviceWorker' in navigator) {
     console.log('ServiceWorker registration failed: ', err);
   });
 }
-
-self.addEventListener('install', (event) => {
-  event.waitUntil(self.skipWaiting());
-  console.log("install "+event)
-});
-
-self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim());
-  console.log('activate '+event)
-});
-
-console.log('End of script')
