@@ -10,7 +10,18 @@ if(!this.document) {
   });
   
   self.addEventListener("fetch", function (event) {
-    console.log(event)
+    console.log(event.request)
+    
+
+    //https://stackoverflow.com/questions/57583086/service-worker-not-getting-body-from-request
+
+    
+
+
+
+
+
+
   });
   
   console.log("End of service worker");  
@@ -19,7 +30,7 @@ if(!this.document) {
   //Register the service worker
   
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('%PUBLIC_URL%/features.js').then((registration) => {
+    navigator.serviceWorker.register('./features.js').then((registration) => {
       // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
     }).catch(function(err) {
