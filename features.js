@@ -24,8 +24,16 @@ if(!this.document) {
     //TODO: Add more information (e.g. headers if possible)
     //https://stackoverflow.com/questions/57583086/service-worker-not-getting-body-from-request
 
+    //2) Record all requests and send them to backend (later: for specific trackerID)
 
-    //2) Get each HTTP Request (incl. URL) and point in time
+    //3) Count requests with same url endpoint, method, and timestamp in same day
+
+    //4) Put it in a graph: x-axis day (date), y-axis: #requests
+
+    //5) Show one graph per URL and Method. Give graph name of URL & Method.
+
+    //6) Login etc.
+
 
   });
   
