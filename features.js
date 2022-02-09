@@ -15,7 +15,6 @@ const sendToBackend = async (request) => {
   });
 }
 
-
 if(!this.document) {
 
   self.addEventListener("install", (event) => {
