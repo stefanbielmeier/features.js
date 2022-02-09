@@ -1,3 +1,8 @@
+//Installation:
+//1) Add file to public folder of your react app. 
+//2) Add <script src="%PUBLIC_URL%/features.js"></script> in the <head></head> tags of your index.html file
+//3) Done!
+
 if(!this.document) {
   self.addEventListener("install", (event) => {
     event.waitUntil(self.skipWaiting());
