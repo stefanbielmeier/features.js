@@ -30,8 +30,6 @@ const dataArr = data.map((d)=> {
     return {x: displDate, y: parseFloat(d.y)}
 })  
 
-console.log(dataArr)
-
 export default function BarChart() {
 
   return (
