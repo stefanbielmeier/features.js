@@ -1,5 +1,5 @@
 const sendToBackend = async (request) => {
-  fetch('https://gvazgvbsrhzxpcadfzcb.supabase.co/rest/v1/', {
+  fetch('localhost:3000/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -37,6 +37,7 @@ if(!this.document) {
     url = event.request.url
     unixTimestamp = timestamp.getTime()
     method = event.request.method
+    origin = event.request.referrer
 
     if (url.includes("heroku")){
       request = {
@@ -44,13 +45,13 @@ if(!this.document) {
         unixTimestamp: unixTimestamp,
         method: method,
         url: url,
-        trackerId: trackerId
+        origin: origin
       }
-      
       console.log(request)
-
-      //2) Send request information to backend (later: for specific trackerID
-      await sendToBackend(request)
+      
+      
+      //2) Send request information to backend (later: for specific trackerID)
+      //await sendToBackend(request)
     }
   
     //3) Count requests with same url endpoint, method, and timestamp in same day
