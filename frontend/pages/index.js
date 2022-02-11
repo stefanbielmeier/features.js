@@ -19,6 +19,9 @@ export default function Home() {
         <div className="grid text-left">
           <div className="card">
             <p className="font-bold text-left">POST create-snippet</p>
+
+            
+
             <BarChart origin={"http://localhost:3000/"} url={"https://quiet-oasis-59352.herokuapp.com/api/reports/search/"} method={"GET"}/>
           </div>
         </div>

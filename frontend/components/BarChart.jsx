@@ -11,10 +11,6 @@ import {
   VerticalBarSeries,
 } from "react-vis";
 
-const MSEC_DAILY = 86400000;
-
-const timestamp = new Date("Feb 01 2022").getTime()
-
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ];
@@ -29,7 +25,6 @@ const mapData = (rawData) => {
     gets: Array of Objects ({id,  unix_timestamp in UTC})
     Returns: array of objects with {x: timestamp as a legible string, e.g. Feb 2 2022, y: count}
     */
-    console.log(rawData)
     var counter = new Map()
 
     for (let request of rawData) {
@@ -60,7 +55,7 @@ const fetchFromBackend = async (setData, url, method, origin) => {
     try {
         let { data, error, status } = await supabase
             .from('requests')
-            .select('*')
+            .select('unix_timestamp')
             .eq('url', url)
             .eq('origin', origin)
             .eq('method', method)
