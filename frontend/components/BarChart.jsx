@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-import { createClient } from '@supabase/supabase-js'
+import {supabase} from '../consts/consts'
 
 import {
   XYPlot,
@@ -36,20 +36,12 @@ const mapData = (rawData) => {
         }
         if (!counter.has(date)) {
             const newDay = {x: date, y: 1}
-            console.log("not in ocunter")
             counter.set(date, newDay)
         }
     }
     const output = Array.from(counter.values());
     return output
 }
-
-const SUPABASE_URL = "https://gvazgvbsrhzxpcadfzcb.supabase.co"
-
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-const supabase = createClient(SUPABASE_URL, supabaseKey)
-
-
 
 const fetchFromBackend = async (setData, url, method, origin) => {
     try {

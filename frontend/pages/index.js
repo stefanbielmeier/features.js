@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Head from "next/head";
 import ChartArea from '../components/ChartArea'
+import SourceSelector from '../components/SourceSelector';
 
-const origin = "http://localhost:3000/"
+import {origin} from '../consts/consts'
 
 export default function Home() {
 
@@ -17,8 +18,9 @@ export default function Home() {
         <h1 className="title font-bold">Welcome to Features.js!</h1>
 
         <p className="description">See which features users use based on your API requests</p>
+
+        <SourceSelector />
         <ChartArea origin={origin}/>
-        
       </main>
 
       <footer>
