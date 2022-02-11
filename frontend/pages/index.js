@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from "next/head";
-import BarChart from '../components/BarChart';
+import ChartArea from '../components/ChartArea'
+
+const origin = "http://localhost:3000/"
 
 export default function Home() {
 
@@ -14,17 +16,9 @@ export default function Home() {
       <main>
         <h1 className="title font-bold">Welcome to Features.js!</h1>
 
-        <p className="description">See which features users use</p>
-
-        <div className="grid text-left">
-          <div className="card">
-            <p className="font-bold text-left">POST create-snippet</p>
-
-            
-
-            <BarChart origin={"http://localhost:3000/"} url={"https://quiet-oasis-59352.herokuapp.com/api/reports/search/"} method={"GET"}/>
-          </div>
-        </div>
+        <p className="description">See which features users use based on your API requests</p>
+        <ChartArea origin={origin}/>
+        
       </main>
 
       <footer>
