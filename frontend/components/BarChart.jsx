@@ -27,12 +27,9 @@ const getDay = (timestamp) => {
 const mapData = (rawData) => {
     /*
     gets: Array of Objects ({id,  unix_timestamp in UTC})
-
     Returns: array of objects with {x: timestamp as a legible string, e.g. Feb 2 2022, y: count}
-
     */
     console.log(rawData)
-    
     var counter = new Map()
 
     for (let request of rawData) {
@@ -49,7 +46,6 @@ const mapData = (rawData) => {
         }
     }
     const output = Array.from(counter.values());
-    console.log("putput", output)
     return output
 }
 
@@ -60,18 +56,20 @@ const supabase = createClient(SUPABASE_URL, supabaseKey)
 
 
 
-const fetchFromBackend = async (setData) => {
+const fetchFromBackend = async (setData, url, method, origin) => {
     try {
         let { data, error, status } = await supabase
             .from('requests')
             .select('*')
+            .eq('url', url)
+            .eq('origin', origin)
+            .eq('method', method)
     
         if (error && status !== 406) {
           throw error
         }
   
         if (data) {
-            console.log("log", data)
             const mappedData = mapData(data)
             setData(mappedData)
         }
@@ -80,13 +78,13 @@ const fetchFromBackend = async (setData) => {
     }
 }
 
-export default function BarChart() {
+export default function BarChart({origin, url, method}) {
 
     const [data, setData] = useState(null)
 
     useEffect(() => {
-        fetchFromBackend(setData)
-    },[])
+        fetchFromBackend(setData, url, method, origin)
+    },[origin, method, origin])
 
   return (
       <XYPlot xType="ordinal" width={450} height={300}>
