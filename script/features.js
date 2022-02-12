@@ -1,8 +1,14 @@
+const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd2YXpndmJzcmh6eHBjYWRmemNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDQ0MjY4OTEsImV4cCI6MTk2MDAwMjg5MX0.F7YUIpCLGHgKLrOHN97nhmFkN_hLGvC0SMz8uTvAQTU"
+const supabaseapi = "https://gvazgvbsrhzxpcadfzcb.supabase.co/rest/v1/requests"
+
 const sendToBackend = async (request) => {
-  fetch('localhost:3000/', {
+  fetch(supabaseapi, {
     method: 'POST',
     headers: {
+      'apikey': key,
+      'Authorization': 'Bearer '+key,
       'Content-Type': 'application/json',
+      'Prefer': 'return=representation',
     },
     body: JSON.stringify(request),
   })
@@ -41,30 +47,18 @@ if(!this.document) {
 
     if (url.includes("heroku")){
       request = {
-        timestamp: timestamp,
-        unixTimestamp: unixTimestamp,
+        unix_timestamp: new Date(unixTimestamp).toISOString(),
         method: method,
         url: url,
         origin: origin
       }
       console.log(request)
       
-      
       //2) Send request information to backend (later: for specific trackerID)
-      //await sendToBackend(request)
+      await sendToBackend(request)
     }
-  
-    //3) Count requests with same url endpoint, method, and timestamp in same day
-
-    //4) Put it in a graph: x-axis day (date), y-axis: #requests
-
-    //5) Show one graph per URL and Method. Give graph name of URL & Method.
-
-    //6) Login etc.
 
   });  
-
-
 
 
 } else {
