@@ -1,6 +1,7 @@
-import React, {useState, useEffect, useCallback} from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { supabase } from "../consts/consts";
 import AsyncSelect from "react-select/async";
+import ChartArea from "./ChartArea";
 
 const getUniqueData = (data) => {
   /* 
@@ -8,17 +9,16 @@ const getUniqueData = (data) => {
     Outputs: unique objects in the data as an array
      */
 
-    var uniqueOrigins = new Array();
-    var uniqueTracker = new Set();
+  var uniqueOrigins = new Array();
+  var uniqueUrls = new Set();
 
   for (let datapoint of data) {
-    if (!uniqueTracker.has(datapoint.origin)) {
-      uniqueTracker.add(datapoint.origin);
+    if (!uniqueUrls.has(datapoint.origin)) {
+      uniqueUrls.add(datapoint.origin);
       uniqueOrigins.push(datapoint);
     }
   }
   return uniqueOrigins;
-
 };
 
 const getUniqueOrigins = async (inputValue) => {
@@ -26,7 +26,7 @@ const getUniqueOrigins = async (inputValue) => {
     let { data, error, status } = await supabase
       .from("requests")
       .select("origin")
-      .ilike('origin', "%"+inputValue+"%")
+      .ilike("origin", "%" + inputValue + "%");
 
     if (error && status !== 406) {
       throw error;
@@ -36,7 +36,7 @@ const getUniqueOrigins = async (inputValue) => {
     }
   } catch (error) {
     alert(error.message);
-    return null
+    return null;
   }
 };
 
@@ -44,32 +44,33 @@ export default function SourceSelector() {
   const [inputValue, setValue] = useState(null);
   const [selectedValue, setSelectedValue] = useState(null);
 
-  const handleInputChange = value => {
+  const handleInputChange = (value) => {
     setValue(value);
   };
- 
+
   // handle selection
-  const handleChange = value => {
+  const handleChange = (value) => {
     setSelectedValue(value);
-  }
+  };
 
   return (
-    <div className="grid gap-4">
-      <div>
-        <p className="">Select your App URL to display your data</p>
+    <div>
+      <div className="grid gap-4">
+        <div className="col-span-5">
+          <AsyncSelect
+            cacheOptions
+            defaultOptions
+            value={selectedValue}
+            getOptionLabel={(e) => e.origin}
+            getOptionValue={(e) => e.origin}
+            loadOptions={getUniqueOrigins}
+            onInputChange={handleInputChange}
+            onChange={handleChange}
+          />
+        </div>
       </div>
-      <div className="col-span-5">
-        <AsyncSelect 
-        cacheOptions
-        defaultOptions
-        value={selectedValue}
-        getOptionLabel={e => e.origin}
-        getOptionValue={e => e.origin}
-        loadOptions={getUniqueOrigins}
-        onInputChange={handleInputChange}
-        onChange={handleChange}
-        />
-      </div>
+
+      <ChartArea origin={selectedValue} />
     </div>
   );
 }

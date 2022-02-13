@@ -21,17 +21,19 @@ const getUniqueData = (data) => {
   return uniqueRequests;
 };
 
-const getUniqueCharts = async (setCharts) => {
+const getUniqueCharts = async (setCharts, origin) => {
   try {
     let { data, error, status } = await supabase
       .from("requests")
-      .select("url, method");
+      .select("url, method")
+      .eq('origin', origin.origin);
 
     if (error && status !== 406) {
       throw error;
     }
 
     if (data) {
+      console.log(data)
       const uniqueData = getUniqueData(data);
       setCharts(uniqueData);
     }
@@ -44,21 +46,28 @@ export default function ChartArea({ origin }) {
   const [charts, setCharts] = useState(null);
 
   useEffect(() => {
-    getUniqueCharts(setCharts);
-  }, []);
+    getUniqueCharts(setCharts, origin);
+    console.log(origin)
+  }, [origin]);
 
   return (
-    <div className="grid text-left">
-      {charts &&charts.map((chart) => (
-        <div className="card">
-          <p className="font-bold text-left">{chart.method} {chart.url.split("/").slice(3).join("/")}</p>
-          <BarChart
-            origin={origin}
-            url={chart.url}
-            method={chart.method}
-          />
-        </div>
-      ))}
-    </div>
-  );
+    <>
+      {!origin ? (<p className="">Select your App URL to display your data</p>)
+      :
+       ( 
+      <div className="grid text-left">
+        {charts &&charts.map((chart) => (
+          <div className="card">
+            <p className="font-bold text-left">{chart.method} {chart.url.split("/").slice(3).join("/")}</p>
+            <BarChart
+              origin={origin}
+              url={chart.url}
+              method={chart.method}
+            />
+          </div>
+        ))}
+      </div>
+      )}
+    </>
+    )
 }

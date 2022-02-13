@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Head from "next/head";
-import ChartArea from '../components/ChartArea'
 import SourceSelector from '../components/SourceSelector';
-
-import {origin} from '../consts/consts'
 
 export default function Home() {
 
@@ -20,7 +17,6 @@ export default function Home() {
         <p className="description">See which features users use based on your API requests</p>
 
         <SourceSelector />
-        <ChartArea origin={origin}/>
       </main>
 
       <footer>
