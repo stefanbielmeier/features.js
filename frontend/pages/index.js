@@ -16,7 +16,7 @@ export default function Home() {
         <p className="description">
           See which features users use based on your API requests
         </p>
-        <p className='text'>Installation: 1) Download </p> <a download="features.js" href='https://raw.githubusercontent.com/stefanbielmeier/features.js/master/script/features.js?token=GHSAT0AAAAAABNVU774QGAIARODWAS2TF7QYQSOZ6Q'>features.js</a>
+        <p className='text'>Installation: 1) Download </p> <a download="features.js" href='https://gitfront.io/r/user-3819279/8b7df2ee61d95fae0b838057f3c8a82fbe32dcf8/features.js/raw/script/features.js'>features.js</a>
         <p className='text'>
           2) Put it in the public folder of your React App 
         </p>
