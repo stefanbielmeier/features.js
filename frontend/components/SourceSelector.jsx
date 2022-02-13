@@ -70,7 +70,7 @@ export default function SourceSelector() {
         </div>
       </div>
 
-      <ChartArea origin={selectedValue} />
+      <ChartArea origin={selectedValue.origin} />
     </div>
   );
 }
