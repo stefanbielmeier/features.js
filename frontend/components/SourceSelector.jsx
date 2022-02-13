@@ -66,11 +66,12 @@ export default function SourceSelector() {
             loadOptions={getUniqueOrigins}
             onInputChange={handleInputChange}
             onChange={handleChange}
+            className='w-full'
           />
         </div>
       </div>
 
-      <ChartArea origin={selectedValue.origin} />
+      <ChartArea origin={selectedValue && selectedValue.origin} />
     </div>
   );
 }

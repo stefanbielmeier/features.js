@@ -54,9 +54,9 @@ export default function ChartArea({ origin }) {
       {!origin ? (<p className="">Select your App URL to display your data</p>)
       :
        ( 
-      <div className="grid text-left">
-        {charts &&charts.map((chart) => (
-          <div className="card">
+      <div className="justify-center flex flex-wrap text-left">
+        {charts && charts.map((chart) => (
+          <div className="card basis-1/2">
             <p className="font-bold text-left">{chart.method} {chart.url.split("/").slice(3).join("/")}</p>
             <BarChart
               origin={origin}
