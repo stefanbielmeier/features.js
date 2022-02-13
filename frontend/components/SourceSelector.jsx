@@ -54,25 +54,24 @@ export default function SourceSelector() {
   };
 
   return (
-    <div>
-      <div className="flex justify-center">
-        <div className="col-span-5">
-          <AsyncSelect
-            cacheOptions
-            defaultOptions
-            value={selectedValue}
-            getOptionLabel={(e) => e.origin}
-            getOptionValue={(e) => e.origin}
-            loadOptions={getUniqueOrigins}
-            onInputChange={handleInputChange}
-            onChange={handleChange}
-            className='w-full'
-          />
-        </div>
+    <>
+    <div className='grid'>
+      <div className="w-96">
+            <AsyncSelect
+              cacheOptions
+              defaultOptions
+              value={selectedValue}
+              getOptionLabel={(e) => e.origin}
+              getOptionValue={(e) => e.origin}
+              loadOptions={getUniqueOrigins}
+              onInputChange={handleInputChange}
+              onChange={handleChange}
+            />
+        
+        
       </div>
-      
-      <ChartArea origin={selectedValue && selectedValue.origin} />
-      
     </div>
+    <ChartArea origin={selectedValue && selectedValue.origin} />
+    </>
   );
 }

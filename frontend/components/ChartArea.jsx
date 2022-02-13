@@ -52,15 +52,16 @@ export default function ChartArea({ origin }) {
   }, [origin, trigger]);
 
   return (
-    <> 
-    <div className="flex justify-end mr-5">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setTrigger(true)}>
-        Refresh data
-      </button>
-    </div>
+    <>
       {!origin ? (<p className="">Select your App's URL to display data</p>)
       :
        ( 
+         <>
+      <div className="flex justify-end mr-5 mt-5">
+        <button class="bg-[#1f9399] hover:bg-[#1e9500] text-white font-bold py-2 px-4 rounded" onClick={() => setTrigger(true)}>
+          Refresh data
+        </button>
+      </div>
       <div className="flex justify-between flex-wrap text-left">
         {charts && charts.map((chart) => (
           <div className="card basis-1/2">
@@ -74,6 +75,7 @@ export default function ChartArea({ origin }) {
           </div>
         ))}
       </div>
+      </>
       )}
     </>
     )
