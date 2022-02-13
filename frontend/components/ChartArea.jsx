@@ -60,7 +60,7 @@ export default function ChartArea({ origin }) {
           <div className="card">
             <p className="font-bold text-left">{chart.method} {chart.url.split("/").slice(3).join("/")}</p>
             <BarChart
-              origin={origin}
+              origin={origin.origin}
               url={chart.url}
               method={chart.method}
             />
