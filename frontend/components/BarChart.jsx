@@ -65,13 +65,13 @@ const fetchFromBackend = async (setData, url, method, origin) => {
     }
 }
 
-export default function BarChart({origin, url, method}) {
+export default function BarChart({origin, url, method, trigger}) {
 
     const [data, setData] = useState(null)
 
     useEffect(() => {
         fetchFromBackend(setData, url, method, origin)
-    },[origin, method, origin])
+    },[origin, method, origin, trigger])
 
   return (
       <XYPlot xType="ordinal" width={450} height={300}>

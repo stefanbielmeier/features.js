@@ -55,7 +55,7 @@ export default function SourceSelector() {
 
   return (
     <div>
-      <div className="grid gap-4">
+      <div className="flex justify-center">
         <div className="col-span-5">
           <AsyncSelect
             cacheOptions
@@ -70,8 +70,9 @@ export default function SourceSelector() {
           />
         </div>
       </div>
-
+      
       <ChartArea origin={selectedValue && selectedValue.origin} />
+      
     </div>
   );
 }

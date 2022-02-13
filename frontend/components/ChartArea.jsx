@@ -34,6 +34,7 @@ const getUniqueCharts = async (setCharts, origin) => {
 
     if (data) {
       const uniqueData = getUniqueData(data);
+      console.log(uniqueData)
       setCharts(uniqueData);
     }
   } catch (error) {
@@ -43,18 +44,24 @@ const getUniqueCharts = async (setCharts, origin) => {
 
 export default function ChartArea({ origin }) {
   const [charts, setCharts] = useState(null);
+  const [trigger, setTrigger] = useState(false);
 
   useEffect(() => {
     getUniqueCharts(setCharts, origin);
-    console.log(origin)
-  }, [origin]);
+    setTrigger(false)
+  }, [origin, trigger]);
 
   return (
-    <>
-      {!origin ? (<p className="">Select your App URL to display your data</p>)
+    <> 
+    <div className="flex justify-end mr-5">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setTrigger(true)}>
+        Refresh data
+      </button>
+    </div>
+      {!origin ? (<p className="">Select your App's URL to display data</p>)
       :
        ( 
-      <div className="justify-center flex flex-wrap text-left">
+      <div className="flex justify-between flex-wrap text-left">
         {charts && charts.map((chart) => (
           <div className="card basis-1/2">
             <p className="font-bold text-left">{chart.method} {chart.url.split("/").slice(3).join("/")}</p>
@@ -62,6 +69,7 @@ export default function ChartArea({ origin }) {
               origin={origin}
               url={chart.url}
               method={chart.method}
+              trigger={trigger}
             />
           </div>
         ))}
