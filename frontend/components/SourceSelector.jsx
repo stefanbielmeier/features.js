@@ -1,54 +1,75 @@
-import React from "react";
-import {supabase} from '../consts/consts'
-import Async from 'react-select/async'
-
+import React, {useState, useEffect, useCallback} from "react";
+import { supabase } from "../consts/consts";
+import AsyncSelect from "react-select/async";
 
 const getUniqueData = (data) => {
   /* 
-    Takes: array of objects of form {url: "someurl", method:"some method"}    
+    Takes: array of objects of form {origin: "someorigin"}    
     Outputs: unique objects in the data as an array
      */
 
-  var uniqueRequests = new Array();
-  var uniqueTracker = new Set();
+    var uniqueOrigins = new Array();
+    var uniqueTracker = new Set();
 
   for (let datapoint of data) {
-    if (!uniqueTracker.has(datapoint.url + datapoint.method)) {
-      uniqueTracker.add(datapoint.url + datapoint.method);
-      uniqueRequests.push(datapoint);
+    if (!uniqueTracker.has(datapoint.origin)) {
+      uniqueTracker.add(datapoint.origin);
+      uniqueOrigins.push(datapoint);
     }
   }
-  return uniqueRequests;
+  return uniqueOrigins;
+
 };
 
-const getUniqueCharts = async (setCharts) => {
+const getUniqueOrigins = async (inputValue) => {
   try {
     let { data, error, status } = await supabase
       .from("requests")
-      .select("url, method");
+      .select("origin")
+      .ilike('origin', "%"+inputValue+"%")
 
     if (error && status !== 406) {
       throw error;
     }
-
     if (data) {
-      const uniqueData = getUniqueData(data);
-      setCharts(uniqueData);
+      return getUniqueData(data);
     }
   } catch (error) {
     alert(error.message);
+    return null
   }
 };
 
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ]
-
 export default function SourceSelector() {
-  
-    return (
-    <Select options={options} />
-  )
+  const [inputValue, setValue] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(null);
+
+  const handleInputChange = value => {
+    setValue(value);
+  };
+ 
+  // handle selection
+  const handleChange = value => {
+    setSelectedValue(value);
+  }
+
+  return (
+    <div className="grid gap-4">
+      <div>
+        <p className="">Select your App URL to display your data</p>
+      </div>
+      <div className="col-span-5">
+        <AsyncSelect 
+        cacheOptions
+        defaultOptions
+        value={selectedValue}
+        getOptionLabel={e => e.origin}
+        getOptionValue={e => e.origin}
+        loadOptions={getUniqueOrigins}
+        onInputChange={handleInputChange}
+        onChange={handleChange}
+        />
+      </div>
+    </div>
+  );
 }
