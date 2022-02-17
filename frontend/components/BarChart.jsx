@@ -17,7 +17,7 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
 
 const getDay = (timestamp) => {
     const date = new Date(timestamp)
-    return monthNames[date.getMonth()] + " " + date.getDate() + " " + date.getFullYear()
+    return monthNames[date.getMonth()] + " " + date.getDate()
 }
 
 const mapData = (rawData) => {
@@ -26,19 +26,23 @@ const mapData = (rawData) => {
     Returns: array of objects with {x: timestamp as a legible string, e.g. Feb 2 2022, y: count}
     */
     var counter = new Map()
-
+    var today = new Date()
+    
+    //Create data objects for the last 30 days
+    for (let i = -30; i <= 0; i++) {
+        var priorDate = new Date(new Date().setDate(today.getDate() + i));
+        var date = getDay(priorDate)
+        counter.set(date, {x: i, y: 0})
+    }
+    //Assign event data to the objects
     for (let request of rawData) {
-        const date = getDay(request.unix_timestamp)
-
-        if (counter.has(date)) {
-            var currentVal = counter.get(date)
-            counter.set(date, {x: currentVal.x, y: currentVal.y + 1})
-        }
-        if (!counter.has(date)) {
-            const newDay = {x: date, y: 1}
-            counter.set(date, newDay)
+        const requestDate = getDay(request.unix_timestamp)
+        if (counter.has(requestDate)) {
+            var currentVal = counter.get(requestDate)
+            counter.set(requestDate, {x: currentVal.x, y: currentVal.y + 1})
         }
     }
+
     const output = Array.from(counter.values());
     return output
 }
@@ -74,12 +78,13 @@ export default function BarChart({origin, url, method, trigger}) {
     },[origin, method, origin, trigger])
 
   return (
-      <XYPlot xType="ordinal" width={450} height={300}>
+      <XYPlot xType="linear" width={450} height={300} xPadding={12} yPadding={10}>
         <HorizontalGridLines />
         <VerticalGridLines />
-        <XAxis title="Day" />
+        <XAxis title={"Days from "+ monthNames[new Date().getMonth()] +" " +new Date().getDate()}/>
         <YAxis title="Number of User Actions" />
         <VerticalBarSeries data={data} />
+
     </XYPlot>
   );
 
