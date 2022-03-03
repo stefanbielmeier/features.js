@@ -43,7 +43,7 @@ const mapData = (rawData) => {
         }
     }
 
-    const output = Array.from(counter.values());
+    const output = Array.from(counter.values()); 
     return output
 }
 
