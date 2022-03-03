@@ -53,7 +53,7 @@ export default function ChartArea({ origin }) {
 
   return (
     <>
-      {!origin ? (<p className="">Select your App's URL to display data</p>)
+      {!origin ? (<p className="text-gray-400">Select your App's URL to display data</p>)
       :
        ( 
          <>
