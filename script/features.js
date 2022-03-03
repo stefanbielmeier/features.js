@@ -1,6 +1,9 @@
 const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd2YXpndmJzcmh6eHBjYWRmemNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDQ0MjY4OTEsImV4cCI6MTk2MDAwMjg5MX0.F7YUIpCLGHgKLrOHN97nhmFkN_hLGvC0SMz8uTvAQTU"
 const supabaseapi = "https://gvazgvbsrhzxpcadfzcb.supabase.co/rest/v1/requests"
 
+const filteredOrigins = ['localhost', 'googleapis']
+const filteredUrls = ['gstatic', 'localhost', 'loom']
+
 const sendToBackend = async (request) => {
   fetch(supabaseapi, {
     method: 'POST',
@@ -45,14 +48,13 @@ if(!this.document) {
     method = event.request.method
     origin = event.request.referrer
 
-    if (url.includes("heroku")){
+    if (!filteredOrigins.some(element => origin.includes(element)) && !filteredUrls.some(element => url.includes(element)) &&!url.includes(origin)) {
       request = {
         unix_timestamp: new Date(unixTimestamp).toISOString(),
         method: method,
         url: url,
         origin: origin
-      }
-      console.log(request)
+      } 
       
       //2) Send request information to backend (later: for specific trackerID)
       await sendToBackend(request)

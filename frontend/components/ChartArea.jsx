@@ -34,7 +34,6 @@ const getUniqueCharts = async (setCharts, origin) => {
 
     if (data) {
       const uniqueData = getUniqueData(data);
-      console.log(uniqueData)
       setCharts(uniqueData);
     }
   } catch (error) {

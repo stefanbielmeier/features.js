@@ -42,8 +42,9 @@ const mapData = (rawData) => {
             counter.set(requestDate, {x: currentVal.x, y: currentVal.y + 1})
         }
     }
-
+    
     const output = Array.from(counter.values()); 
+    console.log(output)
     return output
 }
 
@@ -75,7 +76,7 @@ export default function BarChart({origin, url, method, trigger}) {
 
     useEffect(() => {
         fetchFromBackend(setData, url, method, origin)
-    },[origin, method, origin, trigger])
+    },[origin, url, method, trigger])
 
   return (
       <XYPlot xType="linear" width={450} height={300} xPadding={12} yPadding={10}>

@@ -18,7 +18,8 @@ export default function Home() {
           <p className="text-black-600 font-bold">
             See which features users use based on your API requests
           </p>
-          <p className="text-gray-600"> Installation: 1) Download
+          <p>How it works</p>
+          <p className="text-gray-600"> 1) Download the service worker file
           {//intentional space
           ` `}
           <a
