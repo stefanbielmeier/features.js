@@ -31,7 +31,7 @@ export default function Home() {
           </a>
           </p>
           <p className="text-gray-600"> 2) Put it in the public folder of your React App</p>
-          <p className="text-gray-600"> 3) Start tracking below</p>
+          <p className="text-gray-600"> 3) Select your app URL below to start tracking</p>
         </div>
         <div className="mt-6">
           <SourceSelector />

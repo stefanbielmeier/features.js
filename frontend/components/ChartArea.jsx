@@ -47,8 +47,7 @@ export default function ChartArea({ origin }) {
 
   useEffect(() => {
     getUniqueCharts(setCharts, origin);
-    setTrigger(false)
-  }, [origin, trigger]);
+  }, [origin]);
 
   return (
     <div className='text-left'>
