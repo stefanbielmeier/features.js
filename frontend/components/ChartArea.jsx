@@ -64,7 +64,7 @@ export default function ChartArea({ origin }) {
         </div>
         <div className="grid grid-flow-rows 2xl:grid-cols-3 grid-cols-1 lg:grid-cols-2 text-left gap-10">
           {charts && charts.map((chart) => (
-            <div className="card hover:shadow-md rounded-lg bg-slate-50">
+            <div className="card hover:shadow-md rounded-lg bg-slate-200">
               <p className="font-bold text-left p-5">{chart.method} {chart.url.split("/").slice(3).join("/")}</p>
               <BarChart
                 origin={origin}

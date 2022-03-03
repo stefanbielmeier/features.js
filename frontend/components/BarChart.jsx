@@ -79,8 +79,8 @@ export default function BarChart({origin, url, method, trigger}) {
 
   return (
       <XYPlot xType="linear" width={450} height={300} xPadding={12} yPadding={10}>
-        <VerticalGridLines />
-        <HorizontalGridLines />
+        <VerticalGridLines style={{stroke: '#c4c4c9'}}/>
+        <HorizontalGridLines style={{stroke: '#c4c4c9'}}/>
         <XAxis title={"Days from "+ monthNames[new Date().getMonth()] +" " +new Date().getDate()}/>
         <YAxis title="Number of User Actions" />
         <VerticalBarSeries data={data} />
