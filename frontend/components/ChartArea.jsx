@@ -52,8 +52,8 @@ export default function ChartArea({ origin }) {
   }, [origin, trigger]);
 
   return (
-    <div className='mx-10'>
-      {!origin ? (<p className="text-gray-00">Select your App's URL to display data</p>)
+    <div className='text-left'>
+      {!origin ? (<p className="text-gray-400 text-left">Select your App's URL to display data</p>)
       :
        ( 
       <div className='grid'>
