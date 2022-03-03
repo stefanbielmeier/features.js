@@ -10,12 +10,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="grid py-6 px-4 sm:p-6 md:py-10 md:px-8">
+      <main className="grid py-6 px-4 sm:p-6 md:py-10 md:px-8 gap-3">
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">
+          <h1 className="text-4xl font-bold text-gray-800">
             Welcome to Features.js!
           </h1>
-          <p className="text-gray-600">
+          <p className="text-black-600 font-bold">
             See which features users use based on your API requests
           </p>
           <p className="text-gray-600"> Installation: 1) Download

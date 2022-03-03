@@ -52,31 +52,31 @@ export default function ChartArea({ origin }) {
   }, [origin, trigger]);
 
   return (
-    <>
-      {!origin ? (<p className="text-gray-400">Select your App's URL to display data</p>)
+    <div className='grid gap-4'>
+      {!origin ? (<p className="text-gray-00">Select your App's URL to display data</p>)
       :
        ( 
-         <>
-      <div className="flex justify-end mr-5 mt-5">
-        <button class="bg-[#1f9399] hover:bg-[#1e9500] text-white font-bold py-2 px-4 rounded" onClick={() => setTrigger(true)}>
-          Refresh data
-        </button>
+      <div className='grid'>
+        <div className="flex justify-end mr-5 mt-5">
+          <button class="bg-[#1f9399] hover:bg-[#1e9500] text-white font-bold py-2 px-4 rounded" onClick={() => setTrigger(true)}>
+            Refresh data
+          </button>
+        </div>
+        <div className="flex justify-between flex-wrap text-left">
+          {charts && charts.map((chart) => (
+            <div className="card basis-1/2">
+              <p className="font-bold text-left">{chart.method} {chart.url.split("/").slice(3).join("/")}</p>
+              <BarChart
+                origin={origin}
+                url={chart.url}
+                method={chart.method}
+                trigger={trigger}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="flex justify-between flex-wrap text-left">
-        {charts && charts.map((chart) => (
-          <div className="card basis-1/2">
-            <p className="font-bold text-left">{chart.method} {chart.url.split("/").slice(3).join("/")}</p>
-            <BarChart
-              origin={origin}
-              url={chart.url}
-              method={chart.method}
-              trigger={trigger}
-            />
-          </div>
-        ))}
-      </div>
-      </>
       )}
-    </>
+    </div>
     )
 }
