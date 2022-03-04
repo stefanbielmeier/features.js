@@ -93,18 +93,21 @@ export default function ChartArea({ origin }) {
         <div className="grid">
           {requests && (
             <div className="flex justify-between mt-5 mb-5">
-              <Select
-                options={tlds}
-                cacheOptions
-                isMulti={true}
-                defaultOptions
-                value={selectedValue}
-                getOptionLabel={(obj) => obj.tld}
-                getOptionValue={(obj) => obj.tld}
-                onInputChange={handleInputChange}
-                onChange={handleChange}
-                isSearchable={false}
-              />
+              <div className="w-96">
+                <Select
+                  options={tlds}
+                  cacheOptions
+                  isMulti={true}
+                  defaultOptions
+                  placeholder={'Select API domains to display data'}
+                  value={selectedValue}
+                  getOptionLabel={(obj) => obj.tld}
+                  getOptionValue={(obj) => obj.tld}
+                  onInputChange={handleInputChange}
+                  onChange={handleChange}
+                  isSearchable={false}
+                  />
+              </div>
               <button
                 class="bg-[#1f9399] hover:bg-[#1e9500] text-white font-bold py-2 px-4 rounded"
                 onClick={() => setTrigger(true)}
