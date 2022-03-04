@@ -109,7 +109,7 @@ export default function ChartArea({ origin }) {
                   />
               </div>
               <button
-                class="bg-[#1f9399] hover:bg-[#1e9500] text-white font-bold py-2 px-4 rounded"
+                className="bg-[#1f9399] hover:bg-[#1e9500] text-white font-bold py-2 px-4 rounded"
                 onClick={() => setTrigger(true)}
               >
                 Refresh data
