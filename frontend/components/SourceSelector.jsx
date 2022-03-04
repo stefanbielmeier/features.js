@@ -67,8 +67,6 @@ export default function SourceSelector() {
               onInputChange={handleInputChange}
               onChange={handleChange}
             />
-        
-        
       </div>
     </div>
     <ChartArea origin={selectedValue && selectedValue.origin} />
