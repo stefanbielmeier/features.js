@@ -47,8 +47,13 @@ if(!this.document) {
     unixTimestamp = timestamp.getTime()
     method = event.request.method
     origin = event.request.referrer
+    tld = origin.split('/')[2]
 
-    if (!filteredOrigins.some(element => origin.includes(element)) && !filteredUrls.some(element => url.includes(element)) &&!url.includes(origin)) {
+    passedOriginFilter = !filteredOrigins.some(element => origin.includes(element))
+    passedUrlFilter = !filteredUrls.some(element => url.includes(element))
+    notSameOrigin = !url.includes(tld)
+
+    if (passedOriginFilter && passedUrlFilter && notSameOrigin) {
       request = {
         unix_timestamp: new Date(unixTimestamp).toISOString(),
         method: method,
