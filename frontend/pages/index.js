@@ -30,8 +30,10 @@ export default function Home() {
             features.js
           </a>
           </p>
-          <p className="text-gray-600"> 2) Put it in the public folder of your React App</p>
-          <p className="text-gray-600"> 3) Select your app URL below to start tracking</p>
+          <p className="text-gray-600"> 2) Put it in the public folder of your React or NextJS App</p>
+          <p className="text-gray-600"> 3) Add the script to your app's head: </p>
+          <p className="text-gray-400">Index.html for React: <span className='text-gray-400 hover:text-blue-600'>{`<script src="%PUBLIC_URL%/features.js"></script>`}</span></p>
+          <p className='text-gray-400'>{`<Head></Head>`} component for NextJS: <span className='text-gray-400 hover:text-blue-600'> {`<script src="/features.js"></script>`}</span></p>
         </div>
         <div className="mt-6">
           <SourceSelector />
