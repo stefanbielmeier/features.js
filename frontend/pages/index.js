@@ -32,8 +32,9 @@ export default function Home() {
           </p>
           <p className="text-gray-600"> 2) Put it in the public folder of your React or NextJS App</p>
           <p className="text-gray-600"> 3) Add the script to your app's head: </p>
-          <p className="text-gray-400">Index.html for React: <span className='text-gray-400 hover:text-blue-600'>{`<script src="%PUBLIC_URL%/features.js"></script>`}</span></p>
-          <p className='text-gray-400'>{`<Head></Head>`} component for NextJS: <span className='text-gray-400 hover:text-blue-600'> {`<script src="/features.js"></script>`}</span></p>
+          <p className="text-gray-400 font-semibold">Index.html for React: <span className='font-normal hover:text-blue-600'>{`<script src="%PUBLIC_URL%/features.js"></script>`}</span></p>
+          <p className='text-gray-400 font-semibold'>{`<Head></Head>`} component for NextJS: <span className='font-normal hover:text-blue-600'> {`<script src="/features.js"></script>`}</span></p>
+          <p className='text-gray-400 whitespace-normal'>Disclaimer: if you send headers via URL parameters to your backend, this may not work as well as expected </p>
         </div>
         <div className="mt-6">
           <SourceSelector />

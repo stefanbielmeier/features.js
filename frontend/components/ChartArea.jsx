@@ -105,7 +105,7 @@ export default function ChartArea({ origin }) {
                   getOptionValue={(obj) => obj.tld}
                   onInputChange={handleInputChange}
                   onChange={handleChange}
-                  isSearchable={false}
+                  isSearchable={true}
                   />
               </div>
               <button
