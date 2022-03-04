@@ -43,11 +43,11 @@ const getUniqueOrigins = async (inputValue) => {
 export default function SourceSelector() {
   const [inputValue, setValue] = useState(null);
   const [selectedValue, setSelectedValue] = useState(null);
-
+  
   const handleInputChange = (value) => {
     setValue(value);
   };
-
+  
   // handle selection
   const handleChange = (value) => {
     setSelectedValue(value);
