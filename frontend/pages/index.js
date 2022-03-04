@@ -8,7 +8,6 @@ export default function Home() {
       <Head>
         <title>Features.js</title>
         <link rel="icon" href="/favicon.ico" />
-        <script src='/features.js'></script>
       </Head>
 
       <main className="grid py-6 px-4 sm:p-6 md:py-10 md:px-8 gap-3">
