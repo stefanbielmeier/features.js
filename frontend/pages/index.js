@@ -42,14 +42,11 @@ export default function Home() {
       </main>
 
       <footer className="grid py-6 px-4 sm:p-6 md:py-10 md:px-8">
-        <a
-          href="https://twitter.com/s_bielmeier"
-          target="_blank"
-          rel="noopener noreferrer"
+        <p
           className="text-gray-400"
         >
           Built by Stefan
-        </a>
+        </p>
       </footer>
     </div>
   );
