@@ -41,13 +41,6 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="grid py-6 px-4 sm:p-6 md:py-10 md:px-8">
-        <p
-          className="text-gray-400"
-        >
-          Built by Stefan
-        </p>
-      </footer>
     </div>
   );
 }
