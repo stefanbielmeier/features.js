@@ -43,12 +43,12 @@ export default function Home() {
 
       <footer className="grid py-6 px-4 sm:p-6 md:py-10 md:px-8">
         <a
-          href="https://github.com/stefanbielmeier"
+          href="https://twitter.com/s_bielmeier"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-400"
         >
-          Built by Stefan Bielmeier
+          Built by Stefan
         </a>
       </footer>
     </div>
