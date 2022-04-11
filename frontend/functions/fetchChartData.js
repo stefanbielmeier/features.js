@@ -19,6 +19,11 @@ export const getUniqueTargets = (requests) => {
 };
 
 export const getTLDs = (uniqueTargets) => {
+    /*
+    @Param: uniqueTargets: array of objects with unique request targets {url: "someurl", method:"GET/POST etc."}
+    @Output: array of unique TLDs
+    */
+
   var uniqueTlds = new Array();
   var uniqueTracker = new Set();
 
