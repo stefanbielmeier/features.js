@@ -1,75 +1,29 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { supabase } from "../consts/consts";
+import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
 import ChartArea from "./ChartArea";
-
-const getUniqueData = (data) => {
-  /* 
-    Takes: array of objects of form {origin: "someorigin"}    
-    Outputs: unique objects in the data as an array
-     */
-
-  var uniqueOrigins = new Array();
-  var uniqueUrls = new Set();
-
-  for (let datapoint of data) {
-    if (!uniqueUrls.has(datapoint.origin)) {
-      uniqueUrls.add(datapoint.origin);
-      uniqueOrigins.push(datapoint);
-    }
-  }
-  return uniqueOrigins;
-};
-
-const getUniqueOrigins = async (inputValue) => {
-  try {
-    let { data, error, status } = await supabase
-      .from("requests")
-      .select("origin")
-      .ilike("origin", "%" + inputValue + "%");
-
-    if (error && status !== 406) {
-      throw error;
-    }
-    if (data) {
-      return getUniqueData(data);
-    }
-  } catch (error) {
-    alert(error.message);
-    return null;
-  }
-};
+import { fetchOrigins } from "../functions/fetchRequests";
 
 export default function SourceSelector() {
-  const [inputValue, setValue] = useState(null);
-  const [selectedValue, setSelectedValue] = useState(null);
-  
-  const handleInputChange = (value) => {
-    setValue(value);
-  };
-  
-  // handle selection
-  const handleChange = (value) => {
-    setSelectedValue(value);
-  };
+  const [input, setInput] = useState(null);
+  const [selected, setSelected] = useState(null);
 
   return (
     <>
-    <div className='grid'>
-      <div className="w-96">
-            <AsyncSelect
-              cacheOptions
-              defaultOptions
-              value={selectedValue}
-              getOptionLabel={(e) => e.origin}
-              getOptionValue={(e) => e.origin}
-              loadOptions={getUniqueOrigins}
-              onInputChange={handleInputChange}
-              onChange={handleChange}
-            />
+      <div className="grid">
+        <div className="w-96">
+          <AsyncSelect
+            cacheOptions
+            defaultOptions
+            value={selected}
+            getOptionLabel={(e) => e.origin}
+            getOptionValue={(e) => e.origin}
+            loadOptions={fetchOrigins}
+            onInputChange={(value) => setInput(value)}
+            onChange={(value) => setSelected(value)}
+          />
+        </div>
       </div>
-    </div>
-    <ChartArea origin={selectedValue && selectedValue.origin} />
+      <ChartArea origin={selected && selected.origin} />
     </>
   );
 }
