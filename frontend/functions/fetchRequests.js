@@ -1,4 +1,3 @@
-import React from "react";
 import { supabase } from "../consts/consts";
 
 export const getUniqueOrigins = (requests) => {
@@ -20,7 +19,11 @@ export const getUniqueOrigins = (requests) => {
 };
 
 export const fetchOrigins = async (sourceURL) => {
-  try {
+  // Param: 
+    // sourceURL: string, the sourceURL to fetch unique origins for 
+  // Output: array of objects of form {origin: "someorigin"}
+  
+    try {
     let {
       data: requests,
       error,
