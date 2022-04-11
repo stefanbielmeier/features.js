@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
 import ChartArea from "./ChartArea";
-import { fetchOrigins } from "../functions/fetchRequests";
+import { fetchOrigins } from "../functions/fetchOrigins";
 
 export default function SourceSelector() {
   const [input, setInput] = useState(null);
