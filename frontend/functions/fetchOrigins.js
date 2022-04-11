@@ -9,10 +9,10 @@ export const getUnique = (origins) => {
   var uniqueOrigins = new Array();
   var uniqueUrls = new Set();
 
-  for (let origins of origins) {
-    if (!uniqueUrls.has(origins.origin)) {
-      uniqueUrls.add(origins.origin);
-      uniqueOrigins.push(origins);
+  for (let origin of origins) {
+    if (!uniqueUrls.has(origin.origin)) {
+      uniqueUrls.add(origin.origin);
+      uniqueOrigins.push(origin);
     }
   }
   return uniqueOrigins;
