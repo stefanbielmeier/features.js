@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import Select from "react-select";
-import { fetchUnique } from "../functions/fetchChartData";
+import { fetchUnique } from "../functions/fetchTargets";
 import ChartBox from "./ChartBox";
 
 export default function ChartArea({ origin }) {
