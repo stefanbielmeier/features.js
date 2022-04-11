@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import BarChart from "./BarChart";
 import Select from "react-select";
 import { fetchUnique } from "../functions/fetchChartData";
+import ChartBox from "./ChartBox";
 
 export default function ChartArea({ origin }) {
   const [targets, setTargets] = useState(null);
@@ -61,17 +61,7 @@ export default function ChartArea({ origin }) {
                     selectedTlds.includes(request.url.split("/")[2])
                   )
                   .map((request) => (
-                    <div className="card hover:shadow-md rounded-lg bg-slate-200">
-                      <p className="font-bold text-left p-5">
-                        {request.method} {request.url.split("/").slice(3).join("/")}
-                      </p>
-                      <BarChart
-                        origin={origin}
-                        url={request.url}
-                        method={request.method}
-                        trigger={trigger}
-                      />
-                    </div>
+                    <ChartBox origin={origin} request={request} trigger={trigger}/>
                   ))
             }
           </div>
