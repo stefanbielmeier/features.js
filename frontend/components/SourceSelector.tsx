@@ -17,8 +17,8 @@ export default function SourceSelector(): JSX.Element {
             cacheOptions
             defaultOptions
             value={selected}
-            getOptionLabel={(e) => e.origin}
-            getOptionValue={(e) => e.origin}
+            getOptionLabel={(e: Origin) => e.origin}
+            getOptionValue={(e: Origin) => e.origin}
             loadOptions={fetchOrigins}
             onInputChange={(newVal) => setInput(newVal)}
             onChange={(value) => setSelected(value)}
