@@ -1,6 +1,10 @@
 import { supabase } from "../consts/consts";
 
-export const getUnique = (origins) => {
+interface Origin {
+  origin: string;
+}
+
+export const getUnique = (origins: Origin[]): Origin[] => {
   /* 
       Takes: array of objects of form {origin: "someorigin"}    
       Outputs: unique objects in the data as an array
@@ -18,7 +22,7 @@ export const getUnique = (origins) => {
   return uniqueOrigins;
 };
 
-export const fetchOrigins = async (sourceURL) => {
+export const fetchOrigins = async (sourceURL: string): Promise<Origin[]> => {
   // Param: 
     // sourceURL: string, the sourceURL to fetch unique origins for 
   // Output: array of unique origins. Form: {origin: "URL"}

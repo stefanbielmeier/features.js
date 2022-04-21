@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "functions/fetchOrigins.js"  ],
+, "functions/fetchOrigins.ts"  ],
   "exclude": [
     "node_modules"
   ]

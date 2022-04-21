@@ -19,4 +19,7 @@ module.exports = {
 
     return config;
   },
+  pageExtensions: ['ts', 'tsx', 'md', 'mdx', "js", "jsx"], 
+  
 };
+
