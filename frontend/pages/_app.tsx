@@ -1,9 +1,18 @@
 // import App from 'next/app'
+import { Provider } from "react-redux";
+import {wrapper, store} from '../store/store';
 
-import '../styles/globals.css'
+import '../styles/globals.css';
+
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </>
+  );
 }
 
 // Only uncomment this method if you have blocking data requirements for
@@ -18,4 +27,4 @@ function MyApp({ Component, pageProps }) {
 //   return { ...appProps }
 // }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
