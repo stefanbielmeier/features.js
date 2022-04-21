@@ -10,8 +10,8 @@ export const getUnique = (origins: Origin[]): Origin[] => {
       Outputs: unique objects in the data as an array
        */
 
-  var uniqueOrigins: Origin[] = new Array();
-  var uniqueUrls: Set<string>= new Set();
+  var uniqueOrigins = new Array();
+  var uniqueUrls = new Set();
 
   for (let origin of origins) {
     if (!uniqueUrls.has(origin.origin)) {
