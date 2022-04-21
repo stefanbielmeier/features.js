@@ -1,5 +1,12 @@
 import { supabase } from "../consts/consts";
 
+interface Request {
+  url: string,
+  method: string,
+  
+}
+
+
 export const getUniqueTargets = (requests) => {
   /* 
       Takes: array of objects of form {url: "someurl", method:"some method"}    
