@@ -1,8 +1,6 @@
 import { supabase } from "../consts/consts";
 
-interface Origin {
-  origin: string;
-}
+import {Origin} from '../types/types'
 
 export const getUnique = (origins: Origin[]): Origin[] => {
   /* 

@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
 import ChartArea from "./ChartArea";
 import { fetchOrigins } from "../functions/fetchOrigins";
+import {Origin} from '../types/types';
 
-export default function SourceSelector() {
-  const [input, setInput] = useState(null);
-  const [selected, setSelected] = useState(null);
+
+export default function SourceSelector(): JSX.Element {
+  const [input, setInput] = useState<string>(null);
+  const [selected, setSelected] = useState<Origin>(null);
 
   return (
     <>
@@ -18,12 +20,12 @@ export default function SourceSelector() {
             getOptionLabel={(e) => e.origin}
             getOptionValue={(e) => e.origin}
             loadOptions={fetchOrigins}
-            onInputChange={(value) => setInput(value)}
+            onInputChange={(newVal) => setInput(newVal)}
             onChange={(value) => setSelected(value)}
           />
         </div>
       </div>
-      <ChartArea origin={selected && selected.origin} />
+      {selected && <ChartArea origin={selected.origin} />}
     </>
   );
 }
